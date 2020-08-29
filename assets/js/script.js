@@ -147,6 +147,10 @@ $("#task-form-modal").on("shown.bs.modal", function() {
   $("#modalTaskDescription").trigger("focus");
 });
 
+$("#modalDueDate").datepicker({
+  minDate: 1
+});
+
 // save button in modal was clicked
 $("#task-form-modal .btn-primary").click(function() {
   // get form values
