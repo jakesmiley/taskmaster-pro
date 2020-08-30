@@ -220,15 +220,23 @@ $(".card .list-group").sortable({
   tolerance: "pointer",
   helper: "clone",
   activate: function(event) {
+    $(this).addClass("dropover")
+    $(".bottom-trash", this).addClass("bottom-trash-drag")
     console.log("activate", this);
   },
   deactivate: function(event) {
+    $(this).removeClass("dropover")
+    $(".bottom-trash", this).removeClass("bottom-trash-drag")
     console.log("deactivate", this);
   },
   over: function(event) {
+    $(this).addClass("dropover-active")
+    $(".bottom-trash", this).addClass("bottom-trash-active")
     console.log("over", event.target);
   },
   out: function(event) {
+    $(this).removeClass("dropover-active")
+    $(".bottom-trash", this).removeClass("bottom-trash-active")
     console.log("out", event.target);
   },
   update: function(event) {
@@ -285,4 +293,8 @@ $("#trash").droppable({
 // load tasks for the first time
 loadTasks();
 
-
+setInterval(function () {
+  $(".card .list-group-item").each(function (el) {
+    auditTask(el);
+  });
+}, 5000);
